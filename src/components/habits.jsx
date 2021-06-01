@@ -13,7 +13,7 @@ class Habits extends Component {
     }
 
     handleDelete = habit => {
-        this.props.onDecrement(habit);
+        this.props.onDelete(habit);
     };
     handleAdd = name => {
         this.props.onAdd(name);

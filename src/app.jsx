@@ -12,19 +12,27 @@ class App extends Component {
         ],
     };
     // state 를 수정하는것은 좋지 않다. 
-    handleIncrement = (habit) =>{
-        const habits = [...this.state.habits];
-        const index = habits.indexOf(habit);
-        habits[index].count++;
+    handleIncrement = habit =>{
+        const habits = this.state.habits.map(item => {
+          if(item.id === habit.id){
+            return { ...habit, count : habit.count + 1 };
+            // 디컨스트럭팅 오브젝트
+          }else{
+            return item;
+          }
+        })
         this.setState({habits});
         // this.setState({habits : habits});
     }
     handleDecreament = habit =>{
-        const habits = [...this.state.habits];
-        const index = habits.indexOf(habit);
-        const count = habits[index].count - 1;
-        habits[index].count = count < 0 ? 0 : count;
-        // 직접적 수정하면 안됨
+      const habits = this.state.habits.map(item => {
+        if(item.id === habit.id){
+          const count = habit.count - 1;
+          return { ...habit, count : count < 0 ? 0 : count};
+        }else{
+          return item;
+        }
+      })
         this.setState({habits});
     }
 
@@ -40,7 +48,9 @@ class App extends Component {
 
     handleReset = () =>{
       const habits = this.state.habits.map(habit => {
-        habit.count = 0;
+        if(habit.count !== 0){
+          return { ...habit, count: 0};
+        }
         return habit;
       })
       this.setState({habits});
