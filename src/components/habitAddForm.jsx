@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-// memo 는 purecomeponent 처럼 사요 가능함.
+// memo 는 purecomeponent 처럼 사용 가능함.
 const HabitAddForm = memo((props) => {
     const formRef = React.createRef();
     const inputRef = React.createRef();
