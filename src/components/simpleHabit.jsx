@@ -12,6 +12,7 @@ const SimpleHabit = (props) => {
     useEffect(() =>{
       console.log(`mounted & updated! : ${count}`)
     }, [count])
+    // count값이 변경될때만 useEffect 이 호출됨
     return (
         <li className="habit">
           <span ref={spanRef} className="habit-name">Reading</span>
